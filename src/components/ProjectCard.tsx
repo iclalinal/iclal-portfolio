@@ -10,7 +10,7 @@ export default function ProjectCard({ p }: { p: Project }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Card className="group cursor-pointer border-white/10 bg-white/[0.02] hover:border-cyan-400/40 transition">
+        <Card className="group cursor-pointer border-white/10 bg-white/[0.02] hover:border-cyan-400/40 transition transform-gpu hover:-translate-y-1 hover:shadow-[0_0_24px_rgba(53,198,244,0.15)]">
           <CardHeader>
             <CardTitle className="flex items-center justify-between">
               <span>{p.title}</span>

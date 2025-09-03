@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useI18n } from "@/lib/i18n";
 import LanguageSwitch from "@/components/LanguageSwitch";
+import SwapFade from "@/components/anim/SwapFade";
 
 export default function NavBar() {
   const [scrolled, setScrolled] = useState(false);
@@ -31,16 +32,16 @@ export default function NavBar() {
         </Link>
         <nav className="flex items-center gap-4 text-sm">
           <a href="#projects" className="hover:opacity-80">
-            {c.nav.projects}
+            <SwapFade id="nav-projects">{c.nav.projects}</SwapFade>
           </a>
           <a href="#skills" className="hover:opacity-80">
-            {c.nav.skills}
+            <SwapFade id="nav-skills">{c.nav.skills}</SwapFade>
           </a>
           <a href="#experience" className="hover:opacity-80">
-            {c.nav.experience}
+            <SwapFade id="nav-experience">{c.nav.experience}</SwapFade>
           </a>
           <a href="#contact" className="hover:opacity-80">
-            {c.nav.contact}
+            <SwapFade id="nav-contact">{c.nav.contact}</SwapFade>
           </a>
           <div className="mx-1 h-5 w-px bg-white/15" />
           <LanguageSwitch />
@@ -49,4 +50,3 @@ export default function NavBar() {
     </header>
   );
 }
-

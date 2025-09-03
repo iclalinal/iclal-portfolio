@@ -8,6 +8,7 @@ import SkillsStrip from "@/components/SkillsStrip";
 
 import { useI18n } from "@/lib/i18n";
 import { projects } from "@/lib/data";
+import { FadeIn, ClipCard } from "@/components/anim/Reveal";
 
 export default function Page() {
   const { c } = useI18n();
@@ -19,14 +20,18 @@ export default function Page() {
 
         <Section id="projects" title={c.sections.projects}>
           <div className="grid md:grid-cols-3 gap-6">
-            {projects.map(p => <ProjectCard key={p.id} p={p} />)}
+            {projects.map((p, i) => (
+              <ClipCard key={p.id} index={i}>
+                <ProjectCard p={p} />
+              </ClipCard>
+            ))}
           </div>
         </Section>
 
         <Section id="skills" title={c.sections.skills}>
-          <SkillsStrip skills={[
-            "TypeScript","React (Next.js)","PostgreSQL","SQLite","ExcelJS","ESP8266"
-          ]}/>
+          <FadeIn>
+            <SkillsStrip skills={c.skills} />
+          </FadeIn>
         </Section>
 
         <Section id="experience" title={c.sections.experience}>

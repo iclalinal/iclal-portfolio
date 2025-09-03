@@ -2,6 +2,7 @@ export type Content = {
   nav: { projects: string; skills: string; experience: string; contact: string };
   hero: { title: string; sub: string; ctaProjects: string; ctaCV: string };
   sections: { projects: string; skills: string; experience: string; contact: string };
+  skills: string[];
 };
 
 export const content: Record<"tr" | "en", Content> = {
@@ -24,6 +25,14 @@ export const content: Record<"tr" | "en", Content> = {
       experience: "Deneyim",
       contact: "İletişim",
     },
+    skills: [
+      "TypeScript",
+      "React (Next.js)",
+      "PostgreSQL",
+      "SQLite",
+      "ExcelJS",
+      "ESP8266",
+    ],
   },
   en: {
     nav: {
@@ -44,6 +53,13 @@ export const content: Record<"tr" | "en", Content> = {
       experience: "Experience",
       contact: "Contact",
     },
+    skills: [
+      "TypeScript",
+      "React (Next.js)",
+      "PostgreSQL",
+      "SQLite",
+      "ExcelJS",
+      "ESP8266",
+    ],
   },
 };
-
