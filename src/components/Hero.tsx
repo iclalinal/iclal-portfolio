@@ -1,6 +1,6 @@
 "use client";
 import SignatureUnderline from "./SignatureUnderline";
-import HeroOrbit from "./HeroOrbit";
+import HeroRadialMenu from "./HeroRadialMenu";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n";
@@ -47,7 +47,7 @@ export default function Hero() {
       </div>
 
       <div className="flex justify-center">
-        <HeroOrbit />
+        <HeroRadialMenu />
       </div>
     </section>
   );
