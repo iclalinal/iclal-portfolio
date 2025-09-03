@@ -3,12 +3,13 @@ import SignatureUnderline from "./SignatureUnderline";
 import HeroOrbit from "./HeroOrbit";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import Link from "next/link";
-import { tr } from "@/lib/content";
+import { useI18n } from "@/lib/i18n";
 
 export default function Hero() {
   const mx = useMotionValue(0); const my = useMotionValue(0);
   const tx = useTransform(mx, [ -40, 40 ], [ -6, 6 ]);
   const ty = useTransform(my, [ -40, 40 ], [ -6, 6 ]);
+  const { c } = useI18n();
 
   function onMove(e: React.MouseEvent<HTMLButtonElement>) {
     const r = e.currentTarget.getBoundingClientRect();
@@ -20,12 +21,12 @@ export default function Hero() {
     <section className="relative mx-auto max-w-[1200px] px-5 pt-28 md:pt-36 grid md:grid-cols-2 gap-10 items-center">
       <div>
         <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">
-          {tr.hero.title}
+          {c.hero.title}
         </h1>
         <div className="mt-2">
           <SignatureUnderline />
         </div>
-        <p className="mt-6 text-slate-300">{tr.hero.sub}</p>
+        <p className="mt-6 text-slate-300">{c.hero.sub}</p>
 
         <div className="mt-8 flex gap-3">
           <motion.button
@@ -33,13 +34,13 @@ export default function Hero() {
             className="relative px-5 py-3 rounded-xl bg-cyan-500/10 border border-cyan-400/30 hover:border-cyan-400 text-cyan-200"
             style={{ translateX: tx, translateY: ty }}
           >
-            <a href="#projects">{tr.hero.ctaProjects}</a>
+            <a href="#projects">{c.hero.ctaProjects}</a>
           </motion.button>
           <Link
             href="/cv.pdf"
             className="px-5 py-3 rounded-xl bg-white/10 border border-white/20 hover:bg-white/15"
           >
-            {tr.hero.ctaCV}
+            {c.hero.ctaCV}
           </Link>
         </div>
       </div>

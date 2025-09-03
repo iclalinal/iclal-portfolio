@@ -3,7 +3,7 @@ export type Project = {
   title: string;
   desc: string;
   tags: string[];
-  cover?: string; 
+  cover?: string;
   details?: string[];
 };
 
@@ -15,19 +15,20 @@ export const projects: Project[] = [
     tags: ["React+TS", "Node", "SQLite", "ExcelJS", "Cron"],
     details: [
       "1",
-      "2"
-    ]
+      "2",
+    ],
   },
   {
     id: "atiker-analytics",
     title: "Atiker Analytics",
-    desc: "Satın alma trendleri ve segment bazlı analiz dashboard’ları.",
-    tags: ["SQL", "Dashboard", "Raporlama","Clomosy"]
+    desc: "Satın alma trendleri ve segment bazlı analiz dashboard'ları.",
+    tags: ["SQL", "Dashboard", "Raporlama", "Clomosy"],
   },
   {
     id: "esp8266-logger",
     title: "ESP8266 Sensor Logger",
-    desc: "ESP8266 ile veri toplayıcı..",
-    tags: ["ESP8266", "IoT"]
-  }
+    desc: "ESP8266 ile veri toplayıcı.",
+    tags: ["ESP8266", "IoT"],
+  },
 ];
+
