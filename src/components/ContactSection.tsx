@@ -49,24 +49,7 @@ export default function ContactSection() {
 
   // Not needed anymore; we key by lang directly to remount consistently on language change
 
-  // Sabit partikül pozisyonları (hydration mismatch'i önlemek için)
-  const particlePositions = [
-    { left: "10%", top: "20%" },
-    { left: "90%", top: "15%" },
-    { left: "25%", top: "80%" },
-    { left: "75%", top: "25%" },
-    { left: "50%", top: "60%" },
-    { left: "15%", top: "50%" },
-    { left: "85%", top: "70%" },
-    { left: "35%", top: "10%" },
-    { left: "65%", top: "90%" },
-    { left: "5%", top: "75%" },
-    { left: "95%", top: "35%" },
-    { left: "45%", top: "5%" },
-    { left: "55%", top: "85%" },
-    { left: "30%", top: "45%" },
-    { left: "70%", top: "55%" },
-  ];
+  // particles removed
 
   return (
     <AnimatePresence mode="wait">
@@ -78,31 +61,7 @@ export default function ContactSection() {
         exit={{ opacity: 0 }}
         transition={{ duration: DUR.enter }}
       >
-      {/* Background particles */}
-      <div className="absolute inset-0 pointer-events-none">
-        {particlePositions.map((position, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-2 h-2 bg-white rounded-full opacity-20"
-            style={{
-              left: position.left,
-              top: position.top,
-            }}
-            animate={{
-              x: [0, (i % 2 === 0 ? 100 : -100)],
-              y: [0, (i % 3 === 0 ? 100 : -100)],
-              scale: [1, 1 + (i % 3) * 0.3, 1],
-              opacity: [0.2, 0.5, 0.2],
-            }}
-            transition={{
-              duration: 3 + (i % 3),
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 0.2,
-            }}
-          />
-        ))}
-      </div>
+      {/* Background particles removed for a calmer look */}
 
       {/* Main gradient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-950 to-blue-950/50" />
@@ -132,10 +91,11 @@ export default function ContactSection() {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: DUR.enter, delay: 0.2 }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-16"
+          className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto mb-16"
         >
           {contactItems.map((item, index) => (
             <ContactCard
+              key={(item as any).href ?? item.label}
               icon={item.icon}
               label={item.label}
               value={item.value}
@@ -146,7 +106,7 @@ export default function ContactSection() {
           ))}
         </motion.div>
 
-        {/* Call to action buttons */}
+        {/* Call to action button */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -156,17 +116,10 @@ export default function ContactSection() {
           <AnimatedButton
             variant="primary"
             onClick={handleEmailClick}
+            ariaLabel={c.nav.contact === "Contact" ? "Send email" : "E-posta gönder"}
             icon={<Mail className="w-5 h-5" />}
           >
             {c.contact.emailButton}
-          </AnimatedButton>
-
-          <AnimatedButton
-            variant="secondary"
-            href="/cv.pdf"
-            external
-          >
-            {c.nav.contact === "Contact" ? "Download CV" : "CV İndir"}
           </AnimatedButton>
         </motion.div>
       </motion.div>

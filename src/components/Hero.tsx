@@ -7,19 +7,28 @@ import { useI18n } from "@/lib/i18n";
 import SwapFade from "@/components/anim/SwapFade";
 import { useState } from "react";
 
-export default function Hero() {
-  const mx = useMotionValue(0); 
+function useParallax() {
+  const mx = useMotionValue(0);
   const my = useMotionValue(0);
   const tx = useSpring(useTransform(mx, [-40, 40], [-8, 8]), { stiffness: 150, damping: 15 });
   const ty = useSpring(useTransform(my, [-40, 40], [-8, 8]), { stiffness: 150, damping: 15 });
+  function onMove(e: React.MouseEvent<HTMLElement>) {
+    const r = (e.currentTarget as HTMLElement).getBoundingClientRect();
+    mx.set(e.clientX - (r.left + r.width / 2));
+    my.set(e.clientY - (r.top + r.height / 2));
+  }
+  function onLeave() {
+    mx.set(0);
+    my.set(0);
+  }
+  return { tx, ty, onMove, onLeave } as const;
+}
+
+export default function Hero() {
+  const proj = useParallax();
+  const cvParallax = useParallax();
   const [isHovered, setIsHovered] = useState(false);
   const { c } = useI18n();
-
-  function onMove(e: React.MouseEvent<HTMLButtonElement>) {
-    const r = e.currentTarget.getBoundingClientRect();
-    mx.set(e.clientX - (r.left + r.width/2));
-    my.set(e.clientY - (r.top + r.height/2));
-  }
 
   // Sabit partikül pozisyonları (hydration mismatch'i önlemek için)
   const particlePositions = [
@@ -98,11 +107,11 @@ export default function Hero() {
         >
           {/* Primary CTA Button */}
           <motion.button
-            onMouseMove={onMove}
+            onMouseMove={proj.onMove}
             onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
+            onMouseLeave={() => { setIsHovered(false); proj.onLeave(); }}
             className="group relative px-8 py-4 rounded-2xl overflow-hidden"
-            style={{ translateX: tx, translateY: ty }}
+            style={{ translateX: proj.tx, translateY: proj.ty }}
           >
             {/* Animated background */}
             <motion.div
@@ -147,22 +156,27 @@ export default function Hero() {
           </motion.button>
 
           {/* Secondary CTA Button */}
-          <Link
-            href="/cv.pdf"
-            className="group relative px-8 py-4 rounded-2xl border border-white/20 bg-white/5 hover:bg-white/10 backdrop-blur-sm transition-all duration-300 overflow-hidden"
-          >
-            {/* Shine effect */}
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 -skew-x-12 group-hover:animate-[shimmer_1.5s_ease-in-out]"
-              style={{ transform: "translateX(-100%)" }}
-              animate={{ transform: "translateX(200%)" }}
-              transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 3 }}
-            />
-            
-            <span className="relative z-10 text-slate-300 group-hover:text-white transition-colors">
-              <SwapFade id="hero-cta-cv">{c.hero.ctaCV}</SwapFade>
-            </span>
-          </Link>
+          <motion.div className="inline-flex" onMouseMove={cvParallax.onMove} onMouseLeave={cvParallax.onLeave} style={{ translateX: cvParallax.tx, translateY: cvParallax.ty }}>
+            <Link
+              href={c.hero.cvUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={c.hero.ctaCV}
+              className="group relative px-8 py-4 rounded-2xl border border-white/20 bg-white/5 hover:bg-white/10 backdrop-blur-sm transition-all duration-300 overflow-hidden"
+            >
+              {/* Shine effect (visible only on hover) */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 -skew-x-12"
+                initial={{ x: "-120%" }}
+                animate={{ x: ["-120%", "220%"] }}
+                transition={{ duration: 1.1, repeat: Infinity, ease: "easeInOut", repeatDelay: 2 }}
+              />
+              
+              <span className="relative z-10 text-slate-300 group-hover:text-white transition-colors">
+                <SwapFade id="hero-cta-cv">{c.hero.ctaCV}</SwapFade>
+              </span>
+            </Link>
+          </motion.div>
         </motion.div>
       </div>
 

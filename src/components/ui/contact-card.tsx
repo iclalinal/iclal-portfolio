@@ -48,11 +48,11 @@ export default function ContactCard({
         whileHover={{ y: -2 }}
         transition={SPRING_SOFT}
       >
-        <div className="relative rounded-2xl border-cyan-400/25 bg-white/[0.02] p-6">
+        <div className="relative rounded-2xl border-cyan-400/25 bg-white/[0.02] p-7">
           {/* base neon ring */}
           <span className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-cyan-400/30" aria-hidden />
           {/* glow */}
-          <span className="pointer-events-none absolute -inset-px rounded-[1rem] shadow-[0_0_0_1px_rgba(34,211,238,.12),0_0_24px_rgba(34,211,238,.18),inset_0_0_24px_rgba(34,211,238,.08)] opacity-60 transition-opacity duration-200 group-hover:opacity-100" aria-hidden />
+          <span className="pointer-events-none absolute -inset-px rounded-[1rem] shadow-[0_0_0_1px_rgba(34,211,238,.12),0_0_24px_rgba(34,211,238,.18),inset_0_0_24px_rgba(34,211,238,.08)] opacity-50 transition-opacity duration-200 group-hover:opacity-90" aria-hidden />
           {/* shine sweep removed for contact cards */}
 
           {/* content with depth */}
@@ -64,19 +64,20 @@ export default function ContactCard({
               {icon}
             </div>
             <div className="flex-1" style={{ transform: "translateZ(10px)" }}>
-              <p className="text-sm text-slate-400 mb-1 font-medium">{label}</p>
+              <p className="text-[15px] text-slate-300/90 mb-1 font-medium">{label}</p>
               {href ? (
                 <a
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-slate-300 hover:text-cyan-400 transition-colors duration-200 flex items-center gap-2"
+                  aria-label={`${label}: ${value} (opens in new tab)`}
+                  className="text-[14px] text-slate-300 hover:text-cyan-400 transition-colors duration-200 inline-flex items-center gap-1"
                 >
                   <span>{value}</span>
-                  <ExternalLink className="w-4 h-4" />
+                  <span aria-hidden>↗</span>
                 </a>
               ) : (
-                <span className="text-slate-300">{value}</span>
+                <span className="text-[14px] text-slate-300">{value}</span>
               )}
             </div>
           </div>

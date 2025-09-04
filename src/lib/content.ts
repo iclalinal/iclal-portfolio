@@ -1,6 +1,6 @@
 export type Content = {
   nav: { projects: string; skills: string; experience: string; contact: string };
-  hero: { title: string; sub: string; ctaProjects: string; ctaCV: string };
+  hero: { title: string; sub: string; ctaProjects: string; ctaCV: string; cvUrl: string };
   sections: { projects: string; skills: string; experience: string; contact: string };
   experience: {
     title: string;
@@ -36,7 +36,8 @@ export const content: Record<"tr" | "en", Content> = {
       title: "IoT & Web Odaklı Yazılım Geliştirici",
       sub: "Bağlı ürünler ve web uygulamaları geliştiriyorum.",
       ctaProjects: "Projeleri Gör",
-      ctaCV: "CV İndir",
+      ctaCV: "CV'yi Görüntüle",
+      cvUrl: "LİNK EKLENECEK",
     },
     sections: {
       projects: "Öne Çıkan Projeler",
@@ -58,10 +59,10 @@ export const content: Record<"tr" | "en", Content> = {
       emailButton: "E-posta Gönder",
       linkedinButton: "LinkedIn'de Bağlan",
       responseTime: "Genellikle 24 saat içinde yanıtlıyorum ⚡",
-      email: { label: "E-posta", value: "iclal.inal@example.com" },
+      email: { label: "E-posta", value: "iclall.inall@gmail.com" },
       linkedin: { label: "LinkedIn", value: "linkedin.com/in/iclal-inal" },
       github: { label: "GitHub", value: "github.com/iclalinal" },
-      location: { label: "Konum", value: "Türkiye" },
+      location: { label: "Konum", value: "Türkiye • Uzaktan çalışmaya açık 🌍" },
     },
     skills: [
       "TypeScript",
@@ -83,7 +84,8 @@ export const content: Record<"tr" | "en", Content> = {
       title: "IoT & Web‑focused Software Developer",
       sub: "I build connected products and web applications.",
       ctaProjects: "View Projects",
-      ctaCV: "Download CV",
+      ctaCV: "View CV",
+      cvUrl: "LİNK EKLENECEK",
     },
     sections: {
       projects: "Featured Projects",
@@ -105,10 +107,10 @@ export const content: Record<"tr" | "en", Content> = {
       emailButton: "Send Email",
       linkedinButton: "Connect on LinkedIn",
       responseTime: "I usually respond within 24 hours ⚡",
-      email: { label: "Email", value: "iclal.inal@example.com" },
+      email: { label: "Email", value: "iclall.inall@gmail.com" },
       linkedin: { label: "LinkedIn", value: "linkedin.com/in/iclal-inal" },
       github: { label: "GitHub", value: "github.com/iclalinal" },
-      location: { label: "Location", value: "Turkey" },
+      location: { label: "Location", value: "Türkiye • Open to remote work 🌍" },
     },
     skills: [
       "TypeScript",

@@ -12,6 +12,7 @@ interface AnimatedButtonProps {
   icon?: ReactNode;
   className?: string;
   delay?: number;
+  ariaLabel?: string;
 }
 
 export default function AnimatedButton({
@@ -22,7 +23,8 @@ export default function AnimatedButton({
   external = false,
   icon,
   className = "",
-  delay = 0
+  delay = 0,
+  ariaLabel,
 }: AnimatedButtonProps) {
   const variants = {
     primary: {
@@ -64,12 +66,13 @@ export default function AnimatedButton({
         href={href}
         target={external ? "_blank" : undefined}
         rel={external ? "noopener noreferrer" : undefined}
-        className={`group w-full relative px-8 py-4 rounded-2xl overflow-hidden transition-all duration-200 inline-block ${className}`}
+        className={`group w-full relative px-8 py-4 rounded-2xl overflow-hidden transition-all duration-200 inline-block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 ${className}`}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay, duration: DUR.enter }}
         whileHover={{ scale: 1.02, y: -2 }}
         whileTap={{ scale: 0.98 }}
+        aria-label={ariaLabel}
       >
         {buttonContent}
       </motion.a>
@@ -79,12 +82,13 @@ export default function AnimatedButton({
   return (
     <motion.button
       onClick={onClick}
-      className={`group w-full relative px-8 py-4 rounded-2xl overflow-hidden transition-all duration-200 ${className}`}
+      className={`group w-full relative px-8 py-4 rounded-2xl overflow-hidden transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 ${className}`}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay, duration: DUR.enter }}
       whileHover={{ scale: 1.02, y: -2 }}
       whileTap={{ scale: 0.98 }}
+      aria-label={ariaLabel}
     >
       {buttonContent}
     </motion.button>
