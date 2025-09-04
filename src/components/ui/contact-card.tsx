@@ -1,7 +1,6 @@
 "use client";
 import { motion, useMotionValue } from "framer-motion";
 import { DUR, SPRING_SOFT } from "@/lib/anim";
-import { ExternalLink } from "lucide-react";
 import { ReactNode } from "react";
 
 interface ContactCardProps {

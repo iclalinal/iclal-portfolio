@@ -5,7 +5,7 @@ import { Cpu, Cloud, Database, BarChart3 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-type Node = { id: string; angle: number; href: string; label: string; Icon: React.ComponentType<any> };
+type Node = { id: string; angle: number; href: string; label: string; Icon: React.ComponentType<{ className?: string }> };
 
 const NODES: Node[] = [
   { id: "esp",  angle: 315, href: "#projects", label: "ESP32 / IoT",     Icon: Cpu },

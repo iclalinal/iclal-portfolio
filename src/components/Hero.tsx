@@ -5,23 +5,26 @@ import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n";
 import SwapFade from "@/components/anim/SwapFade";
-import { useState } from "react";
+import { useState, useMemo, useCallback } from "react";
 
 function useParallax() {
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
   const tx = useSpring(useTransform(mx, [-40, 40], [-8, 8]), { stiffness: 150, damping: 15 });
   const ty = useSpring(useTransform(my, [-40, 40], [-8, 8]), { stiffness: 150, damping: 15 });
-  function onMove(e: React.MouseEvent<HTMLElement>) {
+  
+  const onMove = useCallback((e: React.MouseEvent<HTMLElement>) => {
     const r = (e.currentTarget as HTMLElement).getBoundingClientRect();
     mx.set(e.clientX - (r.left + r.width / 2));
     my.set(e.clientY - (r.top + r.height / 2));
-  }
-  function onLeave() {
+  }, [mx, my]);
+  
+  const onLeave = useCallback(() => {
     mx.set(0);
     my.set(0);
-  }
-  return { tx, ty, onMove, onLeave } as const;
+  }, [mx, my]);
+  
+  return { tx, ty, onMove, onLeave };
 }
 
 export default function Hero() {
@@ -30,19 +33,15 @@ export default function Hero() {
   const [isHovered, setIsHovered] = useState(false);
   const { c } = useI18n();
 
-  // Sabit partikül pozisyonları (hydration mismatch'i önlemek için)
-  const particlePositions = [
+  // Sabit partikül pozisyonları (hydration mismatch'i önlemek için) - Memoized
+  const particlePositions = useMemo(() => [
     { left: "15%", top: "20%" },
     { left: "85%", top: "10%" },
     { left: "25%", top: "70%" },
     { left: "75%", top: "80%" },
     { left: "45%", top: "15%" },
     { left: "65%", top: "60%" },
-    { left: "10%", top: "50%" },
-    { left: "90%", top: "40%" },
-    { left: "35%", top: "90%" },
-    { left: "55%", top: "30%" },
-  ];
+  ], []);
 
   return (
     <section className="relative mx-auto max-w-[1200px] px-5 pt-28 md:pt-36 grid md:grid-cols-2 gap-10 items-center">

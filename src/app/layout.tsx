@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { LanguageProvider } from "@/lib/i18n";
 
@@ -21,12 +21,36 @@ export const metadata: Metadata = {
     description: "Embedded-first Software Developer • IoT & Web",
     images: ["/favicon.ico"],
   },
-  themeColor: "#0B0F14",
 };
+
+export const viewport: Viewport = {
+  themeColor: "#0B0F14",
+}
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="tr" suppressHydrationWarning>
+      <head>
+        {/* Preload critical fonts */}
+        <link rel="preload" href="/fonts/geist-sans.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        {/* DNS prefetch for external resources */}
+        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+        {/* Optimize resource hints */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Service Worker Registration */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js')
+                  .then(() => console.log('SW registered'))
+                  .catch(() => console.log('SW registration failed'));
+              }
+            `,
+          }}
+        />
+      </head>
       <body className="bg-[#0B0F14] text-slate-100 antialiased">
         <LanguageProvider>
           {children}

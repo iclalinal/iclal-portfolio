@@ -14,7 +14,6 @@ export default function Section({
     { left: "20%", top: "25%" },
     { left: "80%", top: "15%" },
     { left: "35%", top: "75%" },
-    { left: "65%", top: "85%" },
   ];
 
   return (

@@ -5,7 +5,7 @@ import { Cpu, Cloud, Database, BarChart3 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 
-type Node = { id: string; angle: number; href: string; label: string; Icon: React.ComponentType<any> };
+type Node = { id: string; angle: number; href: string; label: string; Icon: React.ComponentType<{ className?: string }> };
 
 const NODES: Node[] = [
   { id: "esp",  angle: 315, href: "#projects", label: "ESP32 / IoT",     Icon: Cpu },
@@ -54,8 +54,8 @@ export default function HeroRadialMenu() {
     };
     measure();
     let ro: ResizeObserver | undefined;
-    if (typeof window !== "undefined" && (window as any).ResizeObserver) {
-      ro = new (window as any).ResizeObserver(measure);
+    if (typeof window !== "undefined" && window.ResizeObserver) {
+      ro = new window.ResizeObserver(measure);
       if (ro) {
         ro.observe(el);
       }

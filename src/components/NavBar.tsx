@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo, useCallback } from "react";
 import { useI18n } from "@/lib/i18n";
 import LanguageSwitch from "@/components/LanguageSwitch";
 import SwapFade from "@/components/anim/SwapFade";
@@ -9,7 +9,8 @@ import { motion, useScroll, useTransform } from "framer-motion";
 export default function NavBar() {
   const [scrolled, setScrolled] = useState(false);
   const { scrollY } = useScroll();
-  // Glass effect intensifies on scroll
+  
+  // Transform values for glass effect
   const bgColor = useTransform(
     scrollY,
     [0, 100],
@@ -17,14 +18,26 @@ export default function NavBar() {
   );
   const blurFilter = useTransform(scrollY, [0, 100], ["blur(8px)", "blur(18px)"]);
   
+  // Memoize scroll handler
+  const onScroll = useCallback(() => {
+    setScrolled(window.scrollY > 8);
+  }, []);
+  
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [onScroll]);
 
   const { c } = useI18n();
+  
+  // Memoize navigation items
+  const navItems = useMemo(() => [
+    { href: "#projects", key: "nav-projects", text: c.nav.projects },
+    { href: "#skills", key: "nav-skills", text: c.nav.skills },
+    { href: "#experience", key: "nav-experience", text: c.nav.experience },
+    { href: "#contact", key: "nav-contact", text: c.nav.contact },
+  ], [c.nav]);
 
   return (
     <motion.header
@@ -88,12 +101,7 @@ export default function NavBar() {
 
         {/* Navigation */}
         <nav className="flex items-center gap-6 text-sm">
-          {[
-            { href: "#projects", key: "nav-projects", text: c.nav.projects },
-            { href: "#skills", key: "nav-skills", text: c.nav.skills },
-            { href: "#experience", key: "nav-experience", text: c.nav.experience },
-            { href: "#contact", key: "nav-contact", text: c.nav.contact },
-          ].map((item, index) => (
+          {navItems.map((item, index) => (
             <motion.a
               key={item.key}
               href={item.href}

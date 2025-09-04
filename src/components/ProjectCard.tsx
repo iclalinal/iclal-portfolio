@@ -58,7 +58,7 @@ export default function ProjectCard({ p }: { p: Project }) {
             animate={{
               "--mouse-x": `${mx.get()}px`,
               "--mouse-y": `${my.get()}px`,
-            } as any}
+            } as Record<string, string>}
           />
           
           <motion.div
@@ -200,7 +200,7 @@ export default function ProjectCard({ p }: { p: Project }) {
             </div>
           )}
           <div className="flex flex-wrap gap-2 pt-2">
-            {p.tags.map((t, idx) => (
+            {p.tags.map((t) => (
               <Badge 
                 key={t} 
                 variant="outline" 

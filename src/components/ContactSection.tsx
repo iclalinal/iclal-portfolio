@@ -95,7 +95,7 @@ export default function ContactSection() {
         >
           {contactItems.map((item, index) => (
             <ContactCard
-              key={(item as any).href ?? item.label}
+              key={item.href || item.label}
               icon={item.icon}
               label={item.label}
               value={item.value}

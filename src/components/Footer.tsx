@@ -11,8 +11,6 @@ export default function Footer() {
     { left: "80%", top: "20%" },
     { left: "40%", top: "70%" },
     { left: "60%", top: "80%" },
-    { left: "10%", top: "60%" },
-    { left: "90%", top: "50%" },
   ];
 
   return (
