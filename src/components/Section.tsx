@@ -20,7 +20,7 @@ export default function Section({
     <motion.section 
       ref={ref}
       id={id} 
-      className="relative mx-auto max-w-[1200px] px-5 py-24 scroll-mt-24"
+      className="relative mx-auto max-w-[1200px] px-5 py-16 scroll-mt-24"
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
