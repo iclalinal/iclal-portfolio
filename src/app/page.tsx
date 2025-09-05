@@ -8,12 +8,14 @@ import SkillsStrip from "@/components/SkillsStrip";
 
 import { useI18n } from "@/lib/i18n";
 import { projects } from "@/lib/data";
+import FunFacts from "@/components/ui/FunFacts";
 import { FadeIn, ClipCard } from "@/components/anim/Reveal";
 import { motion } from "framer-motion";
 import ContactSection from "@/components/ContactSection";
+import ExperienceTimeline from "@/components/ui/ExperienceTimeline";
 
 export default function Page() {
-  const { c } = useI18n();
+  const { c, lang } = useI18n();
   
   return (
     <div className="relative min-h-screen bg-slate-900 overflow-x-hidden">
@@ -72,13 +74,13 @@ export default function Page() {
 
         <Section id="projects" title={c.sections.projects}>
           <motion.div 
-            className="grid md:grid-cols-3 gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8 items-stretch"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ staggerChildren: 0.2 }}
           >
-            {projects.map((p, i) => (
+            {projects[lang].map((p, i) => (
               <ClipCard key={p.id} index={i}>
                 <ProjectCard p={p} />
               </ClipCard>
@@ -98,29 +100,16 @@ export default function Page() {
         </Section>
 
         <Section id="experience" title={c.sections.experience}>
-          <motion.div 
-            className="relative p-8 rounded-3xl glass-effect border border-cyan-400/20"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="text-slate-300 text-center">
-              <motion.div
-                className="inline-block p-4 rounded-full bg-gradient-to-br from-cyan-500/20 to-purple-500/20 mb-4"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              >
-                🚧
-              </motion.div>
-              <p className="text-lg">{c.experience.placeholder}</p>
-              <p className="text-sm text-slate-400 mt-2">{c.experience.comingSoon}</p>
-            </div>
-          </motion.div>
+          <ExperienceTimeline lang={lang} />
         </Section>
 
         <Section id="contact" title={c.sections.contact}>
           <ContactSection />
+        </Section>
+
+        {/* Fun Facts at the bottom */}
+        <Section id="funfacts" title={lang === "tr" ? "Eğlenceli Bilgiler" : "Fun Facts"}>
+          <FunFacts limit={6} />
         </Section>
       </main>
       
