@@ -1,87 +1,68 @@
 "use client";
-import { motion, useMotionValue } from "framer-motion";
-import { DUR, SPRING_SOFT } from "@/lib/anim";
-import { ReactNode } from "react";
+
+import { CardContent } from "@/components/ui/card";
+import { motion } from "framer-motion";
+import { Card3DWrapper } from "@/components/ui/Card3DWrapper";
 
 interface ContactCardProps {
-  icon: ReactNode;
-  label: string;
+  icon: React.ComponentType<{ className?: string }>;
+  title: string;
   value: string;
-  href: string | null;
-  gradient: string;
-  delay?: number;
+  href?: string | null;
+  external?: boolean;
 }
 
-export default function ContactCard({
-  icon,
-  label,
-  value,
-  href,
-  gradient,
-  delay = 0,
-}: ContactCardProps) {
-  const rx = useMotionValue(0);
-  const ry = useMotionValue(0);
+export function ContactCard({ icon: Icon, title, value, href, external }: ContactCardProps) {
+  const cardContent = (
+    <Card3DWrapper>
+      <CardContent className="flex items-center space-x-4 p-6" style={{ transform: "translateZ(20px)" }}>
+        <motion.div 
+          className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-500/20 to-purple-500/20 backdrop-blur-sm border border-white/10"
+          whileHover={{ scale: 1.1, rotate: 5 }}
+          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+        >
+          <Icon className="h-6 w-6 text-cyan-300" />
+        </motion.div>
+        <div className="flex-1 min-w-0">
+          <h3 className="text-sm font-medium bg-gradient-to-r from-white via-cyan-200 to-purple-300 bg-clip-text text-transparent">
+            {title}
+          </h3>
+          <p className="text-sm text-slate-300 truncate">{value}</p>
+        </div>
+      </CardContent>
+    </Card3DWrapper>
+  );
 
-  function onMove(e: React.MouseEvent<HTMLDivElement>) {
-    const r = e.currentTarget.getBoundingClientRect();
-    const mx = (e.clientX - (r.left + r.width / 2)) / r.width;
-    const my = (e.clientY - (r.top + r.height / 2)) / r.height;
-    ry.set(mx * 12);
-    rx.set(my * -12);
+  if (href) {
+    return (
+      <motion.a
+        href={href}
+        target={external ? "_blank" : undefined}
+        rel={external ? "noopener noreferrer" : undefined}
+        className="block group"
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+      >
+        {cardContent}
+      </motion.a>
+    );
   }
-  function onLeave() { rx.set(0); ry.set(0); }
 
   return (
     <motion.div
-      className="group relative overflow-visible [perspective:1000px]"
-      initial={{ opacity: 0, y: 30, scale: 0.98 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ delay, duration: DUR.enter }}
-      onMouseMove={onMove}
-      onMouseLeave={onLeave}
+      className="group"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
     >
-      <motion.div
-        className="relative transform-gpu"
-        style={{ rotateX: rx, rotateY: ry, transformStyle: "preserve-3d" }}
-        whileHover={{ y: -2 }}
-        transition={SPRING_SOFT}
-      >
-        <div className="relative rounded-2xl border-cyan-400/25 bg-white/[0.02] p-7">
-          {/* base neon ring */}
-          <span className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-cyan-400/30" aria-hidden />
-          {/* glow */}
-          <span className="pointer-events-none absolute -inset-px rounded-[1rem] shadow-[0_0_0_1px_rgba(34,211,238,.12),0_0_24px_rgba(34,211,238,.18),inset_0_0_24px_rgba(34,211,238,.08)] opacity-50 transition-opacity duration-200 group-hover:opacity-90" aria-hidden />
-          {/* shine sweep removed for contact cards */}
-
-          {/* content with depth */}
-          <div className="relative flex items-center gap-4 [transform-style:preserve-3d]">
-            <div
-              className={`p-3 rounded-xl bg-gradient-to-r ${gradient} bg-opacity-20`}
-              style={{ transform: "translateZ(18px)" }}
-            >
-              {icon}
-            </div>
-            <div className="flex-1" style={{ transform: "translateZ(10px)" }}>
-              <p className="text-[15px] text-slate-300/90 mb-1 font-medium">{label}</p>
-              {href ? (
-                <a
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`${label}: ${value} (opens in new tab)`}
-                  className="text-[14px] text-slate-300 hover:text-cyan-400 transition-colors duration-200 inline-flex items-center gap-1"
-                >
-                  <span>{value}</span>
-                  <span aria-hidden>↗</span>
-                </a>
-              ) : (
-                <span className="text-[14px] text-slate-300">{value}</span>
-              )}
-            </div>
-          </div>
-        </div>
-      </motion.div>
+      {cardContent}
     </motion.div>
   );
 }
+
+export default ContactCard;

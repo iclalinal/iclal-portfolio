@@ -12,28 +12,28 @@ export default function ContactSection() {
 
   const contactItems = [
     {
-      icon: <Mail className="w-6 h-6 text-white" />,
+      icon: Mail,
       label: c.contact.email.label,
       value: c.contact.email.value,
       href: `mailto:${c.contact.email.value}`,
       gradient: "from-blue-400 to-cyan-400",
     },
     {
-      icon: <Linkedin className="w-6 h-6 text-white" />,
+      icon: Linkedin,
       label: c.contact.linkedin.label,
       value: c.contact.linkedin.value,
       href: "https://www.linkedin.com/in/iclal-inal-926771220/",
       gradient: "from-blue-600 to-blue-400",
     },
     {
-      icon: <Github className="w-6 h-6 text-white" />,
+      icon: Github,
       label: c.contact.github.label,
       value: c.contact.github.value,
       href: "https://github.com/iclalinal",
       gradient: "from-slate-600 to-slate-400",
     },
     {
-      icon: <MapPin className="w-6 h-6 text-white" />,
+      icon: MapPin,
       label: c.contact.location.label,
       value: c.contact.location.value,
       href: null,
@@ -93,15 +93,14 @@ export default function ContactSection() {
           transition={{ duration: DUR.enter, delay: 0.2 }}
           className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto mb-16"
         >
-          {contactItems.map((item, index) => (
+          {contactItems.map((item) => (
             <ContactCard
               key={item.href || item.label}
               icon={item.icon}
-              label={item.label}
+              title={item.label}
               value={item.value}
               href={item.href}
-              gradient={item.gradient}
-              delay={index * 0.1}
+              external={true}
             />
           ))}
         </motion.div>
