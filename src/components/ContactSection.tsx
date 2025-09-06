@@ -1,5 +1,5 @@
-﻿"use client";
-import { motion, AnimatePresence } from "framer-motion";
+"use client";
+import { m, AnimatePresence } from "framer-motion";
 import { DUR } from "@/lib/anim";
 import { useI18n } from "@/lib/i18n";
 import { Mail, MapPin, Github, Linkedin } from "lucide-react";
@@ -44,7 +44,7 @@ export default function ContactSection() {
 
   return (
     <AnimatePresence mode="wait">
-      <motion.div
+      <m.div
         key={lang}
         className="w-full relative overflow-hidden bg-slate-950 rounded-3xl"
         initial={{ opacity: 0 }}
@@ -58,13 +58,13 @@ export default function ContactSection() {
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-950 to-blue-950/50" />
 
         {/* Content */}
-        <motion.div
+        <m.div
           className="relative z-10 container mx-auto px-6 py-12 md:py-14"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: DUR.enter, delay: 0.2 }}
         >
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: DUR.enter }}
@@ -76,9 +76,9 @@ export default function ContactSection() {
             <p className="text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
               {c.contact.description}
             </p>
-          </motion.div>
+          </m.div>
 
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: DUR.enter, delay: 0.2 }}
@@ -94,11 +94,11 @@ export default function ContactSection() {
                 external={true}
               />
             ))}
-          </motion.div>
+          </m.div>
 
           {/* Removed extra email CTA button; email card already uses mailto */}
-        </motion.div>
-      </motion.div>
+        </m.div>
+      </m.div>
     </AnimatePresence>
   );
 }

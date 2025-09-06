@@ -1,6 +1,6 @@
 // HeroRadialMenu.tsx
 "use client";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { Cpu, Cloud, Database, BarChart3 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -48,7 +48,7 @@ export default function HeroRadialMenu() {
       </button>
 
       {/* arka glow (açılınca) */}
-      <motion.div
+      <m.div
         className="absolute left-1/2 top-1/2 -z-10 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/15 blur-2xl"
         initial={{ width: 0, height: 0, opacity: 0 }}
         animate={open ? { width: 220, height: 220, opacity: 1 } : { width: 0, height: 0, opacity: 0 }}
@@ -62,7 +62,7 @@ export default function HeroRadialMenu() {
         const x = Math.cos(rad) * R;
         const y = Math.sin(rad) * R;
         return (
-          <motion.div
+          <m.div
             key={id}
             className="absolute left-1/2 top-1/2"
             initial={false}
@@ -83,7 +83,7 @@ export default function HeroRadialMenu() {
                 {label}
               </span>
             </Link>
-          </motion.div>
+          </m.div>
         );
       })}
     </div>

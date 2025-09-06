@@ -1,7 +1,7 @@
 "use client";
 import SignatureUnderline from "./SignatureUnderline";
 import HeroRadialMenu from "./HeroRadialMenu";
-import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
+import { m, useMotionValue, useTransform, useSpring } from "framer-motion";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n";
 import SwapFade from "@/components/anim/SwapFade";
@@ -48,7 +48,7 @@ export default function Hero() {
       {/* Subtle background particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {particlePositions.map((position, i) => (
-          <motion.div
+          <m.div
             key={i}
             className="absolute w-px h-px bg-cyan-400/20 rounded-full"
             style={{
@@ -71,41 +71,41 @@ export default function Hero() {
       </div>
 
       <div className="relative z-10">
-        <motion.h1 
+        <m.h1 
           className="text-4xl md:text-6xl font-extrabold tracking-tight bg-gradient-to-r from-white via-cyan-200 to-purple-300 bg-clip-text text-transparent"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
           <SwapFade id="hero-title">{c.hero.title}</SwapFade>
-        </motion.h1>
+        </m.h1>
         
-        <motion.div 
+        <m.div 
           className="mt-4"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.3, duration: 0.6 }}
         >
           <SignatureUnderline />
-        </motion.div>
+        </m.div>
         
-        <motion.p 
+        <m.p 
           className="mt-8 text-slate-300 text-lg leading-relaxed max-w-md"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.8 }}
         >
           <SwapFade id="hero-sub">{c.hero.sub}</SwapFade>
-        </motion.p>
+        </m.p>
 
-        <motion.div 
+        <m.div 
           className="mt-10 flex gap-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7, duration: 0.8 }}
         >
           {/* Primary CTA Button */}
-          <motion.button
+          <m.button
             onMouseMove={proj.onMove}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => { setIsHovered(false); proj.onLeave(); }}
@@ -113,7 +113,7 @@ export default function Hero() {
             style={{ translateX: proj.tx, translateY: proj.ty }}
           >
             {/* Animated background */}
-            <motion.div
+            <m.div
               className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 backdrop-blur-sm"
               animate={{
                 scale: isHovered ? 1.05 : 1,
@@ -123,7 +123,7 @@ export default function Hero() {
             />
             
             {/* Animated border */}
-            <motion.div
+            <m.div
               className="absolute inset-0 rounded-2xl p-[1px]"
               style={{
                 background: "linear-gradient(135deg, rgba(34,211,238,0.6), rgba(168,85,247,0.4), rgba(34,211,238,0.6))",
@@ -138,7 +138,7 @@ export default function Hero() {
               }}
             >
               <div className="h-full w-full rounded-2xl bg-slate-900/80" />
-            </motion.div>
+            </m.div>
 
             {/* Button content */}
             <div className="relative z-10 text-cyan-200 font-semibold group-hover:text-white transition-colors">
@@ -148,14 +148,14 @@ export default function Hero() {
             </div>
 
             {/* Glow effect */}
-            <motion.div
+            <m.div
               className="absolute inset-0 rounded-2xl bg-cyan-400/20 blur-xl opacity-0 group-hover:opacity-100"
               transition={{ duration: 0.3 }}
             />
-          </motion.button>
+          </m.button>
 
           {/* Secondary CTA Button */}
-          <motion.div className="inline-flex" onMouseMove={cvParallax.onMove} onMouseLeave={cvParallax.onLeave} style={{ translateX: cvParallax.tx, translateY: cvParallax.ty }}>
+          <m.div className="inline-flex" onMouseMove={cvParallax.onMove} onMouseLeave={cvParallax.onLeave} style={{ translateX: cvParallax.tx, translateY: cvParallax.ty }}>
             <Link
               href={c.hero.cvUrl}
               target="_blank"
@@ -164,7 +164,7 @@ export default function Hero() {
               className="group relative px-8 py-4 rounded-2xl border border-white/20 bg-white/5 hover:bg-white/10 backdrop-blur-sm transition-all duration-300 overflow-hidden"
             >
               {/* Shine effect (visible only on hover) */}
-              <motion.div
+              <m.div
                 className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 -skew-x-12"
                 initial={{ x: "-120%" }}
                 animate={{ x: ["-120%", "220%"] }}
@@ -175,18 +175,18 @@ export default function Hero() {
                 <SwapFade id="hero-cta-cv">{c.hero.ctaCV}</SwapFade>
               </span>
             </Link>
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
       </div>
 
-      <motion.div 
+      <m.div 
         className="flex justify-center relative z-10"
         initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
         animate={{ opacity: 1, scale: 1, rotate: 0 }}
         transition={{ delay: 0.9, duration: 1, type: "spring", stiffness: 100 }}
       >
         <HeroRadialMenu />
-      </motion.div>
+      </m.div>
     </section>
   );
 }

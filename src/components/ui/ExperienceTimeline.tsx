@@ -1,6 +1,6 @@
 "use client";
 import * as React from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import ExperienceItem from "@/components/ui/ExperienceItem";
 import { experiences, labels, type Lang } from "@/lib/data";
@@ -30,7 +30,7 @@ export function ExperienceTimeline({ lang }: ExperienceTimelineProps) {
 
   return (
     <section aria-labelledby="experience-title" className="relative">
-      <motion.div
+      <m.div
         initial={{ opacity: 0, y: reduced ? 0 : 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
@@ -58,7 +58,7 @@ export function ExperienceTimeline({ lang }: ExperienceTimelineProps) {
             </ol>
           )}
         </div>
-      </motion.div>
+      </m.div>
     </section>
   );
 }

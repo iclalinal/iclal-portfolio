@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { LanguageProvider } from "@/lib/i18n";
+import PerformanceMonitor from "@/components/PerformanceMonitor";
+import MotionProvider from "@/components/MotionProvider";
 
 export const metadata: Metadata = {
   title: "İclal İnal",
@@ -31,27 +33,40 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="tr" className="dark" suppressHydrationWarning>
       <head>
-        {/* Font preload removed: file not present in /public/fonts */}
-        {/* DNS prefetch for external resources */}
-        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
-        {/* Optimize resource hints */}
+        {/* Resource hints for better performance */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+        
+        {/* Preload critical assets */}
+        <link rel="preload" href="/favicon.ico" as="image" type="image/x-icon" />
         {/* Service Worker Registration */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
               if ('serviceWorker' in navigator) {
                 navigator.serviceWorker.register('/sw.js')
-                  .then(() => console.log('SW registered'))
-                  .catch(() => console.log('SW registration failed'));
+                  .then(() => {
+                    if (process.env.NODE_ENV === 'development') {
+                      console.log('SW registered');
+                    }
+                  })
+                  .catch(() => {
+                    if (process.env.NODE_ENV === 'development') {
+                      console.log('SW registration failed');
+                    }
+                  });
               }
             `,
           }}
         />
       </head>
       <body className="antialiased" suppressHydrationWarning>
-        <LanguageProvider>{children}</LanguageProvider>
+        <MotionProvider>
+          <PerformanceMonitor />
+          <LanguageProvider>{children}</LanguageProvider>
+        </MotionProvider>
       </body>
     </html>
   );

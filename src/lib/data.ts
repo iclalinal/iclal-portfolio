@@ -1,4 +1,5 @@
-import { type LucideIcon, Coffee, Target, Gamepad2, Activity, MapPin, Zap } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import { Coffee, Target, Gamepad2, Activity, MapPin, Zap } from "lucide-react";
 export type { Lang } from "@/lib/i18n";
 
 // Minimal project shape consumed by ProjectCard

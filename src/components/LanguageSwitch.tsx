@@ -1,6 +1,6 @@
 "use client";
 import { useI18n } from "@/lib/i18n";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { m, AnimatePresence, useReducedMotion } from "framer-motion";
 
 export default function LanguageSwitch() {
   const { lang, setLang } = useI18n();
@@ -22,7 +22,7 @@ export default function LanguageSwitch() {
         {label}
         <AnimatePresence>
           {selected && (
-            <motion.div
+            <m.div
               layoutId="lang-pill"
               className="absolute inset-0 rounded-md bg-white/10 border border-white/20"
               transition={reduce ? { duration: 0 } : { type: "tween", duration: 0.26, ease: [0.22, 1, 0.36, 1] }}

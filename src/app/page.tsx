@@ -10,7 +10,7 @@ import { useI18n } from "@/lib/i18n";
 import { projects } from "@/lib/data";
 import FunFacts from "@/components/ui/FunFacts";
 import { FadeIn, ClipCard } from "@/components/anim/Reveal";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import ContactSection from "@/components/ContactSection";
 import ExperienceTimeline from "@/components/ui/ExperienceTimeline";
 
@@ -25,7 +25,7 @@ export default function Page() {
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-900 to-slate-800/50" />
         
         {/* Very subtle animated gradient orbs */}
-        <motion.div
+        <m.div
           className="absolute top-1/3 left-1/4 w-96 h-96 bg-cyan-500/3 rounded-full blur-3xl"
           animate={{
             x: [0, 50, 0],
@@ -39,7 +39,7 @@ export default function Page() {
           }}
         />
         
-        <motion.div
+        <m.div
           className="absolute top-2/3 right-1/3 w-80 h-80 bg-purple-500/3 rounded-full blur-3xl"
           animate={{
             x: [0, -40, 0],
@@ -73,7 +73,7 @@ export default function Page() {
         <Hero />
 
         <Section id="projects" title={c.sections.projects}>
-          <motion.div 
+          <m.div 
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8 items-stretch"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -85,7 +85,7 @@ export default function Page() {
                 <ProjectCard p={p} />
               </ClipCard>
             ))}
-          </motion.div>
+          </m.div>
         </Section>
 
         <Section id="skills" title={c.sections.skills}>

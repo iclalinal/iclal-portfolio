@@ -1,6 +1,6 @@
 "use client";
 import SwapFade from "@/components/anim/SwapFade";
-import { motion, useInView } from "framer-motion";
+import { m, useInView } from "framer-motion";
 import { useRef } from "react";
 
 export default function Section({
@@ -17,7 +17,7 @@ export default function Section({
   ];
 
   return (
-    <motion.section 
+    <m.section 
       ref={ref}
       id={id} 
       className="relative mx-auto max-w-[1200px] px-5 py-16 scroll-mt-24"
@@ -28,7 +28,7 @@ export default function Section({
       {/* Subtle background particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {particlePositions.map((position, i) => (
-          <motion.div
+          <m.div
             key={i}
             className="absolute w-px h-px bg-cyan-400/15 rounded-full"
             style={{
@@ -51,7 +51,7 @@ export default function Section({
       </div>
 
       {/* Section header */}
-      <motion.div
+      <m.div
         className="relative z-10 mb-12"
         initial={{ opacity: 0, y: 30 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
@@ -62,7 +62,7 @@ export default function Section({
         </h2>
         
         {/* Decorative line */}
-        <motion.div
+        <m.div
           className="relative h-px bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent max-w-xs"
           initial={{ scaleX: 0 }}
           animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
@@ -70,23 +70,23 @@ export default function Section({
         />
         
         {/* Glow effect */}
-        <motion.div
+        <m.div
           className="absolute inset-0 bg-gradient-to-r from-cyan-400/10 to-purple-400/10 blur-3xl -z-10"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
           transition={{ delay: 0.3, duration: 1 }}
         />
-      </motion.div>
+      </m.div>
 
       {/* Content */}
-      <motion.div
+      <m.div
         className="relative z-10"
         initial={{ opacity: 0, y: 30 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
         transition={{ delay: 0.4, duration: 0.8 }}
       >
         {children}
-      </motion.div>
-    </motion.section>
+      </m.div>
+    </m.section>
   );
 }

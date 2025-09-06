@@ -1,6 +1,6 @@
 // HeroRadialMenu.tsx
 "use client";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { Cpu, Cloud, Database, BarChart3 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -89,7 +89,7 @@ export default function HeroRadialMenu() {
       onMouseLeave={() => setOpen(false)}
     >
       {/* arka parıltı/pulse halka */}
-      <motion.div
+      <m.div
         className="absolute inset-0 rounded-full"
         style={{
           background:
@@ -100,17 +100,17 @@ export default function HeroRadialMenu() {
         transition={{ duration: .4 }}
         aria-hidden
       />
-      <motion.div
+      <m.div
         className="absolute inset-[-2px] rounded-full border border-cyan-400/30"
         animate={open ? { boxShadow: "0 0 24px rgba(34,211,238,.35)" } : { boxShadow: "0 0 10px rgba(34,211,238,.15)" }}
         aria-hidden
       />
 
       {/* parallax tilt container */}
-      <motion.div className="absolute inset-0" style={{ transformStyle: "preserve-3d" }} animate={tilt}>
+      <m.div className="absolute inset-0" style={{ transformStyle: "preserve-3d" }} animate={tilt}>
 
         {/* merkez buton — magnetic */}
-        <motion.button
+        <m.button
           ref={btnRef}
           aria-expanded={open}
           onMouseEnter={() => setOpen(true)}
@@ -122,10 +122,10 @@ export default function HeroRadialMenu() {
           aria-label="Open quick links"
         >
           Explore
-        </motion.button>
+        </m.button>
 
         {/* arka glow (açılınca) */}
-        <motion.div
+        <m.div
           className="absolute left-1/2 top-1/2 -z-10 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/20 blur-2xl"
           initial={{ width: 0, height: 0, opacity: 0 }}
           animate={open ? { width: 240, height: 240, opacity: 1 } : { width: 0, height: 0, opacity: 0 }}
@@ -141,7 +141,7 @@ export default function HeroRadialMenu() {
           const delay = reduce ? 0 : 0.06 * idx;
 
           return (
-            <motion.div
+            <m.div
               key={id}
               className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
               initial={false}
@@ -182,10 +182,10 @@ export default function HeroRadialMenu() {
                   <span className="absolute inset-0 rounded-full shadow-[0_0_24px_rgba(34,211,238,.35)]" />
                 </span>
               </Link>
-            </motion.div>
+            </m.div>
           );
         })}
-      </motion.div>
+      </m.div>
     </div>
   );
 }

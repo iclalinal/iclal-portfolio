@@ -1,5 +1,5 @@
 "use client";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, m, useReducedMotion } from "framer-motion";
 import { useI18n } from "@/lib/i18n";
 
 export default function SwapFade({ id, children }: { id: string; children: React.ReactNode }) {
@@ -7,7 +7,7 @@ export default function SwapFade({ id, children }: { id: string; children: React
   const reduce = useReducedMotion();
   return (
     <AnimatePresence mode="wait" initial={false}>
-      <motion.span
+      <m.span
         key={`${id}-${lang}`}
         initial={{ opacity: 0, y: reduce ? 0 : 10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -16,7 +16,7 @@ export default function SwapFade({ id, children }: { id: string; children: React
         className="inline-block"
       >
         {children}
-      </motion.span>
+      </m.span>
     </AnimatePresence>
   );
 }

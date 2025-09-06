@@ -3,7 +3,7 @@ import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import type { Project } from "@/lib/data";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Github } from "lucide-react";
 import { Card3DWrapper } from "@/components/ui/Card3DWrapper";
 import clsx from "clsx";
@@ -18,7 +18,7 @@ export default function ProjectCard({ p }: { p: Project }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <motion.div className="group relative h-full min-h-[380px]">
+        <m.div className="group relative h-full min-h-[380px]">
           <Card3DWrapper>
             {p.link && (
               <a
@@ -75,7 +75,7 @@ export default function ProjectCard({ p }: { p: Project }) {
               </div>
             </CardContent>
           </Card3DWrapper>
-        </motion.div>
+        </m.div>
       </DialogTrigger>
 
       <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto bg-slate-900/95 backdrop-blur-md border-slate-700/50">

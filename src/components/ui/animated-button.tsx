@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { DUR } from "@/lib/anim";
 import { ReactNode } from "react";
 
@@ -44,7 +44,7 @@ export default function AnimatedButton({
   const buttonContent = (
     <>
       {/* Animated background */}
-      <motion.div
+      <m.div
         className={`absolute inset-0 bg-gradient-to-r ${currentVariant.background}`}
         whileHover={{ scale: 1.1 }}
         transition={{ duration: DUR.hover }}
@@ -62,7 +62,7 @@ export default function AnimatedButton({
 
   if (href) {
     return (
-      <motion.a
+      <m.a
         href={href}
         target={external ? "_blank" : undefined}
         rel={external ? "noopener noreferrer" : undefined}
@@ -75,12 +75,12 @@ export default function AnimatedButton({
         aria-label={ariaLabel}
       >
         {buttonContent}
-      </motion.a>
+      </m.a>
     );
   }
 
   return (
-    <motion.button
+    <m.button
       onClick={onClick}
       className={`group w-full relative px-8 py-4 rounded-2xl overflow-hidden transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 ${className}`}
       initial={{ opacity: 0, y: 20 }}
@@ -91,6 +91,6 @@ export default function AnimatedButton({
       aria-label={ariaLabel}
     >
       {buttonContent}
-    </motion.button>
+    </m.button>
   );
 }
