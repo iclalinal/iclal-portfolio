@@ -3,6 +3,7 @@
 import { CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { Card3DWrapper } from "@/components/ui/Card3DWrapper";
+import { ExternalLink } from "lucide-react";
 
 interface ContactCardProps {
   icon: React.ComponentType<{ className?: string }>;
@@ -24,8 +25,14 @@ export function ContactCard({ icon: Icon, title, value, href, external }: Contac
           <Icon className="h-6 w-6 text-cyan-300" />
         </motion.div>
         <div className="flex-1 min-w-0">
-          <h3 className="text-sm font-medium bg-gradient-to-r from-white via-cyan-200 to-purple-300 bg-clip-text text-transparent">
+          <h3 className="text-sm font-medium bg-gradient-to-r from-white via-cyan-200 to-purple-300 bg-clip-text text-transparent flex items-center gap-2">
             {title}
+            {href ? (
+              <ExternalLink
+                className="w-4 h-4 text-cyan-300/80 opacity-0 group-hover:opacity-100 transition-opacity"
+                aria-hidden
+              />
+            ) : null}
           </h3>
           <p className="text-sm text-slate-300 truncate">{value}</p>
         </div>
@@ -39,12 +46,13 @@ export function ContactCard({ icon: Icon, title, value, href, external }: Contac
         href={href}
         target={external ? "_blank" : undefined}
         rel={external ? "noopener noreferrer" : undefined}
-        className="block group"
+        aria-label={`${title}: ${value}`}
+        title={`${title}: ${value}`}
+        className="block group cursor-pointer rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/40"
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        initial={false}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
       >
         {cardContent}
@@ -55,9 +63,8 @@ export function ContactCard({ icon: Icon, title, value, href, external }: Contac
   return (
     <motion.div
       className="group"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+      initial={false}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
     >
       {cardContent}
