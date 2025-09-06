@@ -7,6 +7,8 @@ export type Project = {
   desc: string;
   tags: string[];
   details?: string[];
+  // Optional repository or project link for the card shortcut
+  link?: string;
 };
 
 export type FunFact = {
@@ -175,6 +177,7 @@ export const projects: Record<"tr" | "en", ProjectItem[]> = {
       title: "ExcelET",
       desc: "Electron + React ile geliştirilen, Excel automations ve ETL akışları için masaüstü aracı.",
       tags: ["Electron", "React", "TypeScript", "ExcelJS"],
+      link: "https://iclalinal.com.tr",
       details: [
         "Büyük dosyalar için streaming ve bellek dostu işleme",
         "Özel formüller ve şablon desteği",
@@ -186,6 +189,7 @@ export const projects: Record<"tr" | "en", ProjectItem[]> = {
       title: "IoT Dashboard",
       desc: "ESP8266 cihazlarından toplanan telemetrileri görselleştiren gerçek‑zamanlı web arayüzü.",
       tags: ["Next.js", "WebSocket", "ESP8266", "Tailwind"],
+      link: "https://iclalinal.com.tr",
       details: [
         "Canlı grafikler ve uyarılar",
         "Cihaz yapılandırma sihirbazı",
@@ -197,6 +201,7 @@ export const projects: Record<"tr" | "en", ProjectItem[]> = {
       title: "Kişisel Portföy",
       desc: "Modern app router mimarisi, animasyonlar ve i18n ile kişisel site.",
       tags: ["Next.js", "TypeScript", "Framer Motion", "i18n"],
+      link: "https://iclalinal.com.tr",
       details: [
         "TR/EN dil desteği",
         "Shadcn UI bileşenleri",
@@ -210,6 +215,7 @@ export const projects: Record<"tr" | "en", ProjectItem[]> = {
       title: "ExcelET",
       desc: "Desktop tool for Excel automations and ETL workflows, built with Electron + React.",
       tags: ["Electron", "React", "TypeScript", "ExcelJS"],
+      link: "https://iclalinal.com.tr",
       details: [
         "Streaming and memory-friendly processing for large files",
         "Custom formulas and template support",
@@ -221,6 +227,7 @@ export const projects: Record<"tr" | "en", ProjectItem[]> = {
       title: "IoT Dashboard",
       desc: "Real-time web interface for visualizing telemetry data collected from ESP8266 devices.",
       tags: ["Next.js", "WebSocket", "ESP8266", "Tailwind"],
+      link: "https://iclalinal.com.tr",
       details: [
         "Live charts and alerts",
         "Device configuration wizard",
@@ -232,6 +239,7 @@ export const projects: Record<"tr" | "en", ProjectItem[]> = {
       title: "Personal Portfolio",
       desc: "Personal website with modern app router architecture, animations and i18n support.",
       tags: ["Next.js", "TypeScript", "Framer Motion", "i18n"],
+      link: "https://iclalinal.com.tr",
       details: [
         "TR/EN language support",
         "Shadcn UI components",
