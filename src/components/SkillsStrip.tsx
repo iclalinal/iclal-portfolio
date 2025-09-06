@@ -3,7 +3,7 @@ import { m } from "framer-motion";
 
 export default function SkillsStrip({ skills }: { skills: string[] }) {
   return (
-    <div className="flex gap-3 overflow-x-auto py-3 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+    <div className="flex flex-wrap gap-3 py-3">
       {skills.map((s, index) => (
         <m.span
           key={s}
