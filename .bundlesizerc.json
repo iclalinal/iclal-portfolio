@@ -1,0 +1,12 @@
+[
+  {
+    "path": "./out/**/*.js",
+    "maxSize": "200 kB",
+    "compression": "gzip"
+  },
+  {
+    "path": "./out/**/*.css",
+    "maxSize": "50 kB",
+    "compression": "gzip"
+  }
+]
