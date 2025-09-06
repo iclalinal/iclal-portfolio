@@ -1,0 +1,11 @@
+{
+  // Keep CSS linting strict, but teach it Tailwind-specific at-rules
+  "css.lint.unknownAtRules": "error",
+  "css.customData": [
+    ".vscode/tailwind-custom-data.json"
+  ],
+  // Treat Tailwind v4 globals as PostCSS for better syntax support
+  "files.associations": {
+    "**/src/app/globals.css": "postcss"
+  }
+}
