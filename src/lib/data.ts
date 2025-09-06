@@ -45,7 +45,7 @@ export type Experience = {
   location?: string;
   start: string;
   end?: string;
-  type: "internship" | "full-time" | "part-time" | "freelance" | "volunteering";
+  type: "internship" | "full-time" | "part-time" | "freelance" | "volunteering" | "education";
   highlights: string[];
   tech?: string[];
   link?: string;
@@ -103,6 +103,21 @@ export const experiences: Record<"tr" | "en", Experience[]> = {
       tech: ["C#/.NET", "SQL Server", "React", "Charts"],
     },
     {
+      id: "education",
+      role: "Eğitim",
+      company: "Üniversite",
+      location: "Türkiye",
+      start: "Sep 2020",
+      end: "Jun 2024",
+      type: "education",
+      highlights: [
+        "Bilgisayar Mühendisliği Lisans Programı",
+        "Yüksek Onur Öğrencisi",
+        "Proje Tabanlı Öğrenme Yaklaşımı",
+      ],
+      tech: ["Java", "Python", "Data Structures", "Algorithms"],
+    },
+    {
       id: "volunteering",
       role: "Topluluk ve Gönüllülük",
       company: "Teknofest ve öğrenci toplulukları",
@@ -149,6 +164,21 @@ export const experiences: Record<"tr" | "en", Experience[]> = {
         "Charts and flexible filters",
       ],
       tech: ["C#/.NET", "SQL Server", "React", "Charts"],
+    },
+    {
+      id: "education",
+      role: "Education",
+      company: "University",
+      location: "Turkey",
+      start: "Sep 2020",
+      end: "Jun 2024",
+      type: "education",
+      highlights: [
+        "Bachelor's Degree in Computer Engineering",
+        "High Honor Student",
+        "Project-Based Learning Approach",
+      ],
+      tech: ["Java", "Python", "Data Structures", "Algorithms"],
     },
     {
       id: "volunteering",

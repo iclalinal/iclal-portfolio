@@ -13,6 +13,8 @@ import { Card3DWrapper } from "@/components/ui/Card3DWrapper";
 function TypeIcon({ type }: { type: Experience["type"] }) {
   switch (type) {
     case "internship":
+      return <Briefcase className="size-4" aria-hidden />;
+    case "education":
       return <GraduationCap className="size-4" aria-hidden />;
     case "volunteering":
       return <HeartHandshake className="size-4" aria-hidden />;
