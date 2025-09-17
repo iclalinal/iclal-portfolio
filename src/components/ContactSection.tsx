@@ -70,9 +70,6 @@ export default function ContactSection() {
             transition={{ duration: DUR.enter }}
             className="text-center mb-10"
           >
-            <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">
-              {c.contact.title}
-            </h2>
             <p className="text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed">
               {c.contact.description}
             </p>
