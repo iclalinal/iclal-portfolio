@@ -48,7 +48,7 @@ export default function Footer() {
               İclal İnal
             </h3>
             <p className="text-slate-400 text-sm max-w-md">
-              Creating innovative solutions with passion and precision
+              Exploring software, IoT, and a bit of everything.
             </p>
           </m.div>
 
@@ -110,12 +110,13 @@ export default function Footer() {
           <span className="flex items-center gap-2">
             © {currentYear} İclal İnal. Made with 
             <m.span
+              className="inline-block w-4 h-4"
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
             >
-              <Heart className="w-4 h-4 text-red-400 fill-current" />
+              <Heart className="w-full h-full text-red-400 fill-current" />
             </m.span>
-            and lots of coffee
+            and lots of water 😅
           </span>
           
           

@@ -5,9 +5,11 @@ import { useI18n } from "@/lib/i18n";
 import LanguageSwitch from "@/components/LanguageSwitch";
 import SwapFade from "@/components/anim/SwapFade";
 import { m, useScroll, useTransform } from "framer-motion";
+import { Menu, X } from "lucide-react";
 
 export default function NavBar() {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const { scrollY } = useScroll();
   
   // Transform values for glass effect
@@ -78,7 +80,7 @@ export default function NavBar() {
         }}
       />
 
-      <div className="relative z-10 mx-auto max-w-[1200px] px-5 py-4 flex items-center justify-between">
+      <div className="relative z-10 mx-auto max-w-[1200px] px-4 sm:px-5 py-3 sm:py-4 flex items-center justify-between">
         {/* Logo */}
         <Link 
           href="/" 
@@ -99,8 +101,18 @@ export default function NavBar() {
           />
         </Link>
 
+        {/* Mobile hamburger */}
+        <button
+          className="sm:hidden inline-flex items-center justify-center rounded-md p-2 text-slate-200 hover:text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen((v) => !v)}
+        >
+          {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
+
         {/* Navigation */}
-        <nav className="flex items-center gap-6 text-sm">
+        <nav className="hidden sm:flex items-center gap-3 sm:gap-6 text-xs sm:text-sm overflow-x-auto sm:overflow-visible whitespace-nowrap no-scrollbar">
           {navItems.map((item, index) => (
             <m.a
               key={item.key}
@@ -147,6 +159,44 @@ export default function NavBar() {
           </m.div>
         </nav>
       </div>
+
+      {/* Mobile full-screen menu */}
+      {menuOpen && (
+        <m.div
+          key="mobile-menu"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="sm:hidden fixed inset-0 z-40 bg-slate-900/90 backdrop-blur-md"
+          onClick={() => setMenuOpen(false)}
+        >
+          <m.nav
+            initial={{ y: -10, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.2 }}
+            className="mx-auto mt-20 w-11/12 max-w-sm rounded-2xl border border-white/10 bg-white/5 p-4 text-base text-white"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <ul className="space-y-2">
+              {navItems.map((item) => (
+                <li key={`m-${item.key}`}>
+                  <a
+                    href={item.href}
+                    className="block rounded-lg px-4 py-3 hover:bg-white/10"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    {item.text}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-3 border-t border-white/10 pt-3 flex items-center justify-between">
+              <span className="text-sm text-slate-300">Language</span>
+              <LanguageSwitch />
+            </div>
+          </m.nav>
+        </m.div>
+      )}
     </m.header>
   );
 }

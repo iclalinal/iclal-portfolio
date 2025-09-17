@@ -44,7 +44,7 @@ export default function Hero() {
   ], []);
 
   return (
-    <section className="relative mx-auto max-w-[1200px] px-5 pt-28 md:pt-36 grid md:grid-cols-2 gap-10 items-center">
+    <section className="relative mx-auto max-w-[1200px] px-5 pt-24 md:pt-36 grid md:grid-cols-2 gap-6 md:gap-10 items-center">
       {/* Subtle background particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {particlePositions.map((position, i) => (
@@ -72,7 +72,7 @@ export default function Hero() {
 
       <div className="relative z-10">
         <m.h1 
-          className="text-4xl md:text-6xl font-extrabold tracking-tight bg-gradient-to-r from-white via-cyan-200 to-purple-300 bg-clip-text text-transparent"
+          className="text-4xl md:text-6xl font-extrabold tracking-tight leading-[1.08] bg-gradient-to-r from-white via-cyan-200 to-purple-300 bg-clip-text text-transparent"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -81,7 +81,7 @@ export default function Hero() {
         </m.h1>
         
         <m.div 
-          className="mt-4"
+          className="mt-2 md:mt-3"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.3, duration: 0.6 }}

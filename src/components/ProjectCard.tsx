@@ -18,8 +18,8 @@ export default function ProjectCard({ p }: { p: Project }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <m.div className="group relative h-full min-h-[380px]">
-          <Card3DWrapper>
+        <m.div className="group relative h-full">
+          <Card3DWrapper className="h-full">
             {p.link && (
               <a
                 href={p.link}
