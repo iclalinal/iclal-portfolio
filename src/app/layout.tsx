@@ -5,23 +5,47 @@ import PerformanceMonitor from "@/components/PerformanceMonitor";
 import MotionProvider from "@/components/MotionProvider";
 
 export const metadata: Metadata = {
-  title: "İclal İnal",
-  description: "Embedded-first Software Developer · IoT & Web",
+  title: "İclal İnal - Software Developer",
+  description: "Embedded systems and IoT specialist with expertise in ESP32, MQTT, Next.js, TypeScript, and modern web technologies. Computer Engineering student passionate about innovation.",
+  keywords: ["İclal İnal", "Embedded Software", "IoT Developer", "ESP32", "MQTT", "Next.js", "TypeScript", "Computer Engineering", "Software Developer", "Web Development", "Gömülü Sistem", "Yazılım Geliştirici", "IoT Uzmanı", "Bilgisayar Mühendisliği", "Web Geliştirme", "Teknoloji", "Yazılım Mühendisi", "Frontend", "Backend", "Full Stack"],
   metadataBase: new URL("https://iclalinal.com.tr"),
+  alternates: {
+    canonical: "https://iclalinal.com.tr",
+  },
   icons: { icon: "/favicon.ico" },
   openGraph: {
-    title: "İclal İnal",
-    description: "Exploring software, IoT, and a bit of everything.",
+    title: "İclal İnal -  Software Developer",
+    description: "Embedded systems and IoT specialist with expertise in ESP32, MQTT, Next.js, TypeScript, and modern web technologies. Passionate about creating innovative solutions.",
     url: "https://iclalinal.com.tr",
-    siteName: "İclal İnal",
-    images: [{ url: "/favicon.ico", width: 64, height: 64 }],
+    siteName: "İclal İnal Portfolio",
+    images: [
+      {
+        url: "/favicon.ico",
+        width: 64,
+        height: 64,
+        alt: "İclal İnal - Software Developer",
+      }
+    ],
     type: "website",
+    locale: "tr_TR",
   },
   twitter: {
     card: "summary_large_image",
-    title: "İclal İnal",
-    description: "Exploring software, IoT, and a bit of everything.",
+    title: "İclal İnal - Software Developer",
+    description: "Embedded systems and IoT specialist with expertise in ESP32, MQTT, Next.js, TypeScript, and modern web technologies.",
     images: ["/favicon.ico"],
+    creator: "@iclalinal",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 
