@@ -40,6 +40,11 @@ export default function NavBar() {
     { href: "#experience", key: "nav-experience", text: c.nav.experience },
     { href: "#contact", key: "nav-contact", text: c.nav.contact },
   ], [c.nav]);
+  
+  // Additional external links
+  const externalLinks = [
+    { href: "/guestbook", key: "nav-guestbook", text: c.nav.guestbook }
+  ];
 
   return (
     <m.header
@@ -141,6 +146,38 @@ export default function NavBar() {
             </m.a>
           ))}
           
+          {/* External Links */}
+          {externalLinks.map((link, index) => (
+            <m.div
+              key={link.href}
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 * (navItems.length + index), duration: 0.6 }}
+              whileHover={{ y: -2 }}
+            >
+              <Link
+                href={link.href}
+                className="group relative px-3 py-2 rounded-lg transition-colors hover:text-cyan-400"
+              >
+                <SwapFade id={link.key}>{link.text}</SwapFade>
+                
+                {/* Hover background */}
+                <m.div
+                  className="absolute inset-0 bg-cyan-500/10 rounded-lg opacity-0 group-hover:opacity-100"
+                  transition={{ duration: 0.2 }}
+                />
+                
+                {/* Underline effect */}
+                <m.div
+                  className="absolute bottom-0 left-1/2 h-0.5 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full"
+                  initial={{ width: 0, x: "-50%" }}
+                  whileHover={{ width: "80%" }}
+                  transition={{ duration: 0.3 }}
+                />
+              </Link>
+            </m.div>
+          ))}
+          
           {/* Divider */}
           <m.div
             className="mx-2 h-6 w-px bg-gradient-to-b from-transparent via-white/20 to-transparent"
@@ -187,6 +224,17 @@ export default function NavBar() {
                   >
                     {item.text}
                   </a>
+                </li>
+              ))}
+              {externalLinks.map((link) => (
+                <li key={`m-${link.key}`}>
+                  <Link
+                    href={link.href}
+                    className="block rounded-lg px-4 py-3 hover:bg-white/10"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    {link.text}
+                  </Link>
                 </li>
               ))}
             </ul>

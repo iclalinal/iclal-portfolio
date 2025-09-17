@@ -1,5 +1,5 @@
 export type Content = {
-  nav: { projects: string; skills: string; experience: string; contact: string };
+  nav: { projects: string; skills: string; experience: string; contact: string; guestbook: string };
   hero: { title: string; sub: string; ctaProjects: string; ctaCV: string; cvUrl: string };
   sections: { projects: string; skills: string; experience: string; contact: string };
   experience: {
@@ -31,14 +31,15 @@ export const content: Record<"tr" | "en", Content> = {
       skills: "Yetenekler",
       experience: "Deneyim",
       contact: "İletişim",
+      guestbook: "Ziyaretçi Defteri",
     },
     hero: {
-      title: "IoT & Web Odaklı Yazılım Geliştirici",
-      sub: "Bağlı ürünler ve web uygulamaları geliştiriyorum.",
+      title: "Yazılım Geliştirici  • Bilgisayar Mühendisliği Öğrencisi ",
+      sub: "Web uygulamaları ve IoT projeleri dahil farklı alanlarda deneyim kazanmaya çalışıyorum.",
       ctaProjects: "Projeleri Gör",
       ctaCV: "CV'yi Görüntüle",
-      cvUrl: "LİNK EKLENECEK",
-    },
+      cvUrl: "https://drive.google.com/file/d/1qyJrN6jFcaKQkuUvwzmKjyQwQr03dghV/view?usp=sharing",
+    },    
     sections: {
       projects: "Öne Çıkan Projeler",
       skills: "Yetenekler",
@@ -52,10 +53,10 @@ export const content: Record<"tr" | "en", Content> = {
     },
     contact: {
       title: "İletişim",
-      description: "Yeni projeler, iş birlikleri veya sadece merhaba demek için bana ulaşabilirsiniz. Teknoloji ve inovasyon hakkında konuşmayı seviyorum!",
+      description: "Yeni projeler, fikirler veya sadece merhaba demek için bana ulaşabilirsiniz. Öğrenmeye ve kendimi geliştirmeye her zaman açığım.",
       infoTitle: "İletişim Bilgileri",
       quickTitle: "Hızlı İletişim",
-      quickDescription: "Projeleriniz için teknik danışmanlık, web geliştirme hizmetleri veya iş birliği fırsatları hakkında konuşalım.",
+      quickDescription: "Projeler, yazılım dünyası ya da teknoloji üzerine sohbet etmek için bana yazabilirsiniz.",
       emailButton: "E-posta Gönder",
       linkedinButton: "LinkedIn'de Bağlan",
       responseTime: "Genellikle 24 saat içinde yanıtlıyorum ⚡",
@@ -66,11 +67,17 @@ export const content: Record<"tr" | "en", Content> = {
     },
     skills: [
       "TypeScript",
-      "React (Next.js)",
-      "PostgreSQL",
-      "SQLite",
-      "ExcelJS",
-      "ESP8266",
+      "React (Next.js, Vite)",
+      "Node.js & Express",
+      "Python",
+      "C / C++ / C#",
+      "PostgreSQL & SQLite",
+      "SQL Server",
+      "Docker",
+      "Git/GitHub",
+      "ESP8266 & Arduino",
+      "MQTT & CAN-Bus",
+      "Sensör Entegrasyonu (DHT22, MPU6050, HC-SR04 vb.)",
     ],
   },
   en: {
@@ -79,13 +86,14 @@ export const content: Record<"tr" | "en", Content> = {
       skills: "Skills",
       experience: "Experience",
       contact: "Contact",
+      guestbook: "Guestbook",
     },
     hero: {
-      title: "IoT & Web‑focused Software Developer",
-      sub: "I build connected products and web applications.",
+      title: "Software Developer Computer Engineering Student",
+      sub: "I am working to gain experience in areas ranging from web applications to IoT projects.",
       ctaProjects: "View Projects",
       ctaCV: "View CV",
-      cvUrl: "LİNK EKLENECEK",
+      cvUrl: "https://drive.google.com/file/d/1_YOtwhDTwMRnvwTM3dd4ClXr_15It5Qt/view?usp=sharing",
     },
     sections: {
       projects: "Featured Projects",
@@ -100,10 +108,10 @@ export const content: Record<"tr" | "en", Content> = {
     },
     contact: {
       title: "Contact",
-      description: "Feel free to reach out for new projects, collaborations, or just to say hello. I love discussing technology and innovation!",
+      description: "You can reach out for new projects, ideas, or just to say hello. I’m always eager to learn and improve myself.",
       infoTitle: "Contact Information",
       quickTitle: "Quick Contact",
-      quickDescription: "Let's discuss technical consulting, web development services, or collaboration opportunities for your projects.",
+      quickDescription: "Feel free to message me to talk about projects, software, or technology in general.",
       emailButton: "Send Email",
       linkedinButton: "Connect on LinkedIn",
       responseTime: "I usually respond within 24 hours ⚡",
@@ -114,11 +122,17 @@ export const content: Record<"tr" | "en", Content> = {
     },
     skills: [
       "TypeScript",
-      "React (Next.js)",
-      "PostgreSQL",
-      "SQLite",
-      "ExcelJS",
-      "ESP8266",
+      "React (Next.js, Vite)",
+      "Node.js & Express",
+      "Python",
+      "C / C++ / C#",
+      "PostgreSQL & SQLite",
+      "SQL Server",
+      "Docker",
+      "Git/GitHub",
+      "ESP8266 & Arduino",
+      "MQTT & CAN-Bus",
+      "Sensor Integration (DHT22, MPU6050, HC-SR04 etc.)"
     ],
   },
 };
