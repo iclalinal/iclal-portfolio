@@ -20,6 +20,7 @@ export function FunFactCard({ fact, className }: Props) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.5, ease: "easeOut" }}
+      whileHover={{ y: -2 }}
       className={cn("group relative", className)}
     >
       <Card3DWrapper>

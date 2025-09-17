@@ -47,14 +47,12 @@ export function ExperienceItem({ item, lang, className }: ExperienceItemProps) {
       aria-label={`${item.role} at ${item.company}`}
     >
       {/* Enhanced timeline node */}
-      <m.span 
+      <m.span
         className="absolute left-0 top-6 inline-flex size-3 -translate-x-1.5 rounded-full bg-gradient-to-r from-cyan-400 to-purple-400 shadow-lg ring-4 ring-slate-900/50"
         whileHover={{ scale: 1.2 }}
-        animate={{
-          boxShadow: "0 0 20px rgba(34,211,238,0.6), 0 0 5px rgba(34,211,238,0.3)"
-        }}
+        animate={{ boxShadow: "0 0 20px rgba(34,211,238,0.6), 0 0 5px rgba(34,211,238,0.3)" }}
         transition={{ duration: 0.3 }}
-        aria-hidden 
+        aria-hidden
       />
 
       {/* 3D Card using wrapper */}
@@ -62,7 +60,9 @@ export function ExperienceItem({ item, lang, className }: ExperienceItemProps) {
         <CardContent className="py-6 px-6" style={{ transform: "translateZ(20px)" }}>
           <div className="flex flex-wrap items-start justify-between gap-3">
             <h3 className="text-base font-semibold bg-gradient-to-r from-white via-cyan-200 to-purple-300 bg-clip-text text-transparent">
-              {item.role} <span className="text-slate-400">• {item.company}</span>
+              {item.role}
+              <span className="text-slate-400"> {" • "}</span>
+              <span className="text-slate-300">{item.company}</span>
             </h3>
             <div className="flex items-center gap-2 text-xs text-slate-400">
               <Calendar className="size-4" aria-hidden />
@@ -85,9 +85,9 @@ export function ExperienceItem({ item, lang, className }: ExperienceItemProps) {
               </span>
             ) : null}
             {item.link ? (
-              <Button 
-                asChild 
-                variant="ghost" 
+              <Button
+                asChild
+                variant="ghost"
                 className="h-7 px-2 text-xs text-slate-400 hover:text-cyan-300 hover:bg-cyan-500/10 transition-colors"
               >
                 <a href={item.link} target="_blank" rel="noreferrer" aria-label="External link">
@@ -116,8 +116,8 @@ export function ExperienceItem({ item, lang, className }: ExperienceItemProps) {
           {highlights.length > 0 ? (
             <ul className="mt-5 space-y-2 text-sm text-slate-300">
               {highlights.map((h, i) => (
-                <m.li 
-                  key={i} 
+                <m.li
+                  key={i}
                   className="relative pl-4"
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -139,3 +139,4 @@ export function ExperienceItem({ item, lang, className }: ExperienceItemProps) {
 }
 
 export default ExperienceItem;
+

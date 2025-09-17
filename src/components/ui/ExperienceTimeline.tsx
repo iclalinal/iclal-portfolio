@@ -6,7 +6,7 @@ import ExperienceItem from "@/components/ui/ExperienceItem";
 import { experiences, labels, type Lang } from "@/lib/data";
 import { Briefcase } from "lucide-react";
 
-export type ExperienceTimelineProps = { lang: Lang };
+export type ExperienceTimelineProps = { lang: Lang; showTitle?: boolean };
 
 function EmptyState({ lang }: { lang: Lang }) {
   const l = labels[lang];
@@ -23,13 +23,17 @@ function EmptyState({ lang }: { lang: Lang }) {
   );
 }
 
-export function ExperienceTimeline({ lang }: ExperienceTimelineProps) {
+export function ExperienceTimeline({ lang, showTitle = false }: ExperienceTimelineProps) {
   const l = labels[lang];
   const items = experiences[lang] ?? [];
   const reduced = useReducedMotion();
 
+  const sectionProps = showTitle
+    ? { "aria-labelledby": "experience-title" }
+    : { "aria-label": l.sectionTitle };
+
   return (
-    <section aria-labelledby="experience-title" className="relative">
+    <section {...sectionProps} className="relative">
       <m.div
         initial={{ opacity: 0, y: reduced ? 0 : 16 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -37,9 +41,14 @@ export function ExperienceTimeline({ lang }: ExperienceTimelineProps) {
         transition={{ duration: 0.5, ease: "easeOut" }}
         className="mx-auto max-w-5xl px-4"
       >
-        <h2 id="experience-title" className="mb-8 text-xl font-semibold tracking-tight bg-gradient-to-r from-white via-cyan-200 to-purple-300 bg-clip-text text-transparent">
-          {l.sectionTitle}
-        </h2>
+        {showTitle ? (
+          <h2
+            id="experience-title"
+            className="mb-8 text-xl font-semibold tracking-tight bg-gradient-to-r from-white via-cyan-200 to-purple-300 bg-clip-text text-transparent"
+          >
+            {l.sectionTitle}
+          </h2>
+        ) : null}
 
         <div className="relative">
           {/* Enhanced vertical gradient line */}
@@ -64,3 +73,4 @@ export function ExperienceTimeline({ lang }: ExperienceTimelineProps) {
 }
 
 export default ExperienceTimeline;
+

@@ -9,22 +9,25 @@ type Props = {
   className?: string;
   title?: string;
   limit?: number;
+  showTitle?: boolean;
 };
 
-export function FunFacts({ className, title, limit }: Props) {
+export function FunFacts({ className, title, limit, showTitle = false }: Props) {
   const { lang } = useI18n();
   const items = funFacts[lang].slice(0, limit ?? funFacts[lang].length);
-  const fallbackTitle = lang === "tr" ? "Eğlenceli Bilgiler" : "Fun Facts";
+  const fallbackTitle = lang === "tr" ? "Küçük Bilgiler" : "Fun Facts";
 
   return (
     <section className={cn("w-full", className)}>
       <div className="mx-auto max-w-5xl px-4">
-        <h2 className="mb-6 text-xl font-semibold tracking-tight text-white/90">
-          {title ?? fallbackTitle}
-        </h2>
+        {showTitle ? (
+          <h2 className="mb-6 text-xl font-semibold tracking-tight text-white/90">
+            {title ?? fallbackTitle}
+          </h2>
+        ) : null}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((f, i) => (
-            <FunFactCard key={`${f.title}-${i}`} fact={f} />
+            <FunFactCard key={`${lang}-${f.title}-${i}`} fact={f} />
           ))}
         </div>
       </div>
@@ -33,4 +36,3 @@ export function FunFacts({ className, title, limit }: Props) {
 }
 
 export default FunFacts;
-
