@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   icons: { icon: "/favicon.ico" },
   openGraph: {
     title: "İclal İnal",
-    description: "Embedded-first Software Developer · IoT & Web",
+    description: "Exploring software, IoT, and a bit of everything.",
     url: "https://iclalinal.com.tr",
     siteName: "İclal İnal",
     images: [{ url: "/favicon.ico", width: 64, height: 64 }],
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "İclal İnal",
-    description: "Embedded-first Software Developer · IoT & Web",
+    description: "Exploring software, IoT, and a bit of everything.",
     images: ["/favicon.ico"],
   },
 };
