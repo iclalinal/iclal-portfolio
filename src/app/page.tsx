@@ -74,7 +74,7 @@ export default function Page() {
 
         <Section id="projects" title={c.sections.projects}>
           <m.div 
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8 items-stretch"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-x-4 gap-y-8 items-stretch"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -108,7 +108,7 @@ export default function Page() {
         </Section>
 
         {/* Fun Facts at the bottom */}
-        <Section id="funfacts" title={lang === "tr" ? "Eğlenceli Bilgiler" : "Fun Facts"}>
+        <Section id="funfacts" title={lang === "tr" ? "Küçük Bilgiler" : "Fun Facts"}>
           <FunFacts limit={6} />
         </Section>
       </main>
@@ -117,3 +117,4 @@ export default function Page() {
     </div>
   );
 }
+

@@ -20,7 +20,7 @@ export default function Section({
     <m.section 
       ref={ref}
       id={id} 
-      className="relative mx-auto max-w-[1200px] px-5 py-16 scroll-mt-24"
+      className="relative mx-auto max-w-[1200px] px-5 py-12 md:py-16 scroll-mt-24"
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
@@ -52,7 +52,7 @@ export default function Section({
 
       {/* Section header */}
       <m.div
-        className="relative z-10 mb-12"
+        className="relative z-10 mb-8 md:mb-12"
         initial={{ opacity: 0, y: 30 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
         transition={{ delay: 0.2, duration: 0.8 }}

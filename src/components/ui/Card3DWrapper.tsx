@@ -1,6 +1,6 @@
 "use client";
 import { m } from "framer-motion";
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { use3DCard } from "@/hooks/use3DCard";
 
 interface Card3DWrapperProps {
@@ -16,18 +16,31 @@ export function Card3DWrapper({
   withParticles = true,
   particleCount = 6 
 }: Card3DWrapperProps) {
+  const [canHover, setCanHover] = useState(true);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setCanHover(window.matchMedia("(hover: hover)").matches);
+      const mq = window.matchMedia("(max-width: 640px)");
+      setIsSmallScreen(mq.matches);
+      const handler = (e: MediaQueryListEvent) => setIsSmallScreen(e.matches);
+      mq.addEventListener?.("change", handler);
+      return () => mq.removeEventListener?.("change", handler);
+    }
+  }, []);
   const { isHovered, mx, my, rx, ry, onMove, onLeave, onEnter } = use3DCard();
 
   return (
     <m.div
-      className={`group relative overflow-visible [perspective:1200px] cursor-pointer ${className}`}
-      onMouseMove={onMove}
-      onMouseLeave={onLeave}
-      onMouseEnter={onEnter}
+      className={`group relative overflow-visible [perspective:1200px] ${canHover ? "cursor-pointer" : ""} ${className}`}
+      onMouseMove={canHover ? onMove : undefined}
+      onMouseLeave={canHover ? onLeave : undefined}
+      onMouseEnter={canHover ? onEnter : undefined}
     >
       {/* Outer glow effect */}
       <m.div
-        className="absolute -inset-4 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        className="absolute -inset-1 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
         style={{
           background: "radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(34,211,238,0.15), transparent 40%)",
         }}
@@ -44,7 +57,7 @@ export function Card3DWrapper({
           rotateY: ry, 
           transformStyle: "preserve-3d",
         }}
-        whileHover={{ z: 50 }}
+        whileHover={canHover ? { z: 50 } : undefined}
         transition={{ type: "spring", stiffness: 280, damping: 25 }}
       >
         {/* Main card with Projects styling */}
@@ -72,7 +85,7 @@ export function Card3DWrapper({
 
           {/* Shine effect */}
           <m.div
-            className="absolute inset-0 opacity-0 group-hover:opacity-100"
+            className="absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none"
             animate={{
               background: `linear-gradient(135deg, transparent 30%, rgba(255,255,255,0.2) 50%, transparent 70%)`,
             }}
@@ -85,7 +98,7 @@ export function Card3DWrapper({
           </div>
 
           {/* Floating particles effect */}
-          {withParticles && (
+          {(withParticles && canHover && !isSmallScreen) && (
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
               {[...Array(particleCount)].map((_, i) => (
                 <m.div
