@@ -33,6 +33,17 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# deployment files (server-specific, not for git)
+/public_html/
+secure_config.php
+*.log
+/logs/
+/backups/
+
+# server scripts (optional - keep local only)
+*.sh
+*.txt
+
 # vercel
 .vercel
 
