@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 
 /* Utility to hide scrollbars where we enable horizontal scrolling on small screens */
 .no-scrollbar::-webkit-scrollbar { display: none; }
